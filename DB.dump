@@ -1,0 +1,37 @@
+-- MariaDB dump for javaee Database
+
+-- Create the javaee database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS `javaee` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `javaee`;
+
+-- Table structure for `SpellError`
+DROP TABLE IF EXISTS `SpellError`;
+CREATE TABLE `SpellError` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `word` VARCHAR(255) NOT NULL,
+  `suggestion` VARCHAR(255) DEFAULT NULL,
+  `sentence_context` TEXT DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Sample data for `SpellError`
+INSERT INTO `SpellError` (`word`, `suggestion`, `sentence_context`) VALUES
+('recieve', 'receive', 'Please recieve the package tomorrow.'),
+('acheive', 'achieve', 'He will acheive his goals.'),
+('seperate', 'separate', 'Keep these items seperate.');
+
+-- Table structure for `SpellStatistics`
+DROP TABLE IF EXISTS `SpellStatistics`;
+CREATE TABLE `SpellStatistics` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `total_errors` INT NOT NULL,
+  `checked_text_length` INT DEFAULT NULL,
+  `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Sample data for `SpellStatistics`
+INSERT INTO `SpellStatistics` (`total_errors`, `checked_text_length`, `timestamp`) VALUES
+(3, 120, '2023-10-13 07:00:00'),
+(5, 250, '2023-10-13 07:15:00'),
+(2, 180, '2023-10-13 07:30:00');

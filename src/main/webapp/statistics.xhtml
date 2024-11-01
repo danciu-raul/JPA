@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+   <title>Spell Check Statistics</title>
+</h:head>
+<h:body>
+   <h:form>
+      <p:inputNumber value="#{statistics.topCount}" min="1" max="100"/>
+      <p:commandButton value="Load Statistics" action="#{statistics.loadStatistics}"
+                       update="statsTable"/>
+
+      <p:dataTable id="statsTable" value="#{statistics.topErrors}" var="stat">
+         <p:column headerText="Wrong Word">
+            #{stat.wrongWord}
+         </p:column>
+         <p:column headerText="Correct Word">
+            #{stat.correctWord}
+         </p:column>
+         <p:column headerText="Occurrences">
+            #{stat.occurrenceCount}
+         </p:column>
+      </p:dataTable>
+   </h:form>
+</h:body>
+</html>

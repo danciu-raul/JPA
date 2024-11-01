@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Spell Checker</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:inputTextarea value="#{spellCheck.inputText}" rows="10" cols="50"
+                         placeholder="Enter text for spell checking..."/>
+        <p:commandButton value="Check Spelling" action="#{spellCheck.checkSpelling}"
+                         update="errorList"/>
+
+        <p:dataTable id="errorList" value="#{spellCheck.errors}" var="error">
+            <p:column headerText="Wrong Word">
+                #{error.wrongWord}
+            </p:column>
+            <p:column headerText="Suggested Correction">
+                #{error.correctWord}
+            </p:column>
+            <p:column headerText="Context">
+                #{error.context}
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
